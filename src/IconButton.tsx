@@ -53,7 +53,7 @@ interface IconButtonProps {
     iconPaths?: any[];
     iconSize?: number;
     hasShadow?: boolean;
-    style?: React.CSSProperties;
+    styles?: React.CSSProperties;
     size?: "xs" | "sm" | "md" | "lg" | "xl";
 }
 
@@ -75,7 +75,7 @@ const IconButton: React.FC<IconButtonProps> = ({
     iconPaths,
     iconSize,
     hasShadow = true,
-    style,
+    styles,
     size = "md",
 }) => {
     const [isPressed, setIsPressed] = useState(false);
@@ -125,7 +125,7 @@ const IconButton: React.FC<IconButtonProps> = ({
         opacity: disabled ? 0.6 : 1,
         position: "relative",
         boxSizing: "border-box",
-        ...style,
+        ...styles,
     };
 
     return (

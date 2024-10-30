@@ -131,6 +131,7 @@ const IconButton: React.FC<IconButtonProps> = ({
     return (
         <Touchable onClick={onClick} style={buttonStyles}>
             <button
+                onClick={(e) => e.preventDefault()}
                 onMouseDown={handlePressStart}
                 onMouseUp={handlePressEnd}
                 onMouseLeave={handlePressEnd}

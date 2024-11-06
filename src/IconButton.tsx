@@ -53,11 +53,11 @@ interface IconButtonProps {
     iconPaths?: any[];
     iconSize?: number;
     hasShadow?: boolean;
-    styles?: React.CSSProperties;
+    style?: React.CSSProperties;
     size?: "xs" | "sm" | "md" | "lg" | "xl";
 }
 
-const sizeStyles = {
+const sizeStyle = {
     xs: { size: 32, iconSize: 16 },
     sm: { size: 36, iconSize: 18 },
     md: { size: 44, iconSize: 24 }, // Tamaño por defecto
@@ -75,7 +75,7 @@ const IconButton: React.FC<IconButtonProps> = ({
     iconPaths,
     iconSize,
     hasShadow = true,
-    styles,
+    style,
     size = "md",
 }) => {
     const [isPressed, setIsPressed] = useState(false);
@@ -92,8 +92,8 @@ const IconButton: React.FC<IconButtonProps> = ({
         }
     };
 
-    const buttonSize = sizeStyles[size].size;
-    const calculatedIconSize = iconSize ?? sizeStyles[size].iconSize;
+    const buttonSize = sizeStyle[size].size;
+    const calculatedIconSize = iconSize ?? sizeStyle[size].iconSize;
 
     // Resuelve el color de fondo para el botón
     const resolvedColor = color in colors ? colors[color as keyof typeof colors] : color;
@@ -106,7 +106,7 @@ const IconButton: React.FC<IconButtonProps> = ({
                 : colors.textShade
             : resolvedColor; // En los demás casos, el icono usará el color del texto
 
-    const buttonStyles: React.CSSProperties = {
+    const buttonStyle: React.CSSProperties = {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -125,11 +125,11 @@ const IconButton: React.FC<IconButtonProps> = ({
         opacity: disabled ? 0.6 : 1,
         position: "relative",
         boxSizing: "border-box",
-        ...styles,
+        ...style,
     };
 
     return (
-        <Touchable onClick={onClick} style={buttonStyles}>
+        <Touchable onClick={onClick} style={buttonStyle}>
             <button
                 onClick={(e) => e.preventDefault()}
                 onMouseDown={handlePressStart}

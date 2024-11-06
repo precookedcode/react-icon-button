@@ -24,7 +24,7 @@ npm install @precooked/react-icon-button
 | `iconPaths`  | `any[]`                     | `undefined` | Custom SVG paths for the icon.                                                                |
 | `iconSize`   | `number`                    | `undefined` | Size of the icon in pixels, defaulting to the size based on `size`.                           |
 | `hasShadow`  | `boolean`                   | `true`      | Whether the button has a shadow.                                                              |
-| `styles`     | `React.CSSProperties`       | `undefined` | Custom styles for the button.                                                                 |
+| `style`     | `React.CSSProperties`       | `undefined` | Custom style for the button.                                                                 |
 | `size`       | `"xs" \| "sm" \| "md" \| "lg" \| "xl"` | `'md'`       | Size of the button, affecting its dimensions and icon size.                                   |
 
 ## Example Usage

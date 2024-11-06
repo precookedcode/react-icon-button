@@ -9,6 +9,14 @@
     "build": "tsc"
   },
   "author": "Roberto Carraro",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/precookedcode/react-icon-button.git"
+  },
+  "bugs": {
+    "url": "https://github.com/precookedcode/react-icon-button/issues"
+  },
+  "homepage": "https://github.com/precookedcode/react-icon-button#readme",
   "license": "ISC",
   "dependencies": {
     "@precooked/react-icon": "^1.0.11",

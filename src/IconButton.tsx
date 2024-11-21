@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 import { colors } from "@precooked/utils";
 import { DynamicIcon } from "@precooked/react-dynamic-icon";
 import { Icon } from "@precooked/react-icon";
@@ -24,7 +24,6 @@ const isDarkColor = (color: string) => {
     if (!rgb) return false;
 
     const { r, g, b } = rgb;
-    // Fórmula para calcular el brillo
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
     return brightness < 128;
 };
@@ -45,7 +44,7 @@ const resolveIcon = (
 
 interface IconButtonProps {
     onClick: () => void;
-    color?: keyof typeof colors | string; // Ahora acepta clave de colors o string
+    color?: keyof typeof colors | string;
     borderRadius?: number;
     type?: "clear" | "outline" | "solid";
     disabled?: boolean;
@@ -60,12 +59,12 @@ interface IconButtonProps {
 const sizeStyle = {
     xs: { size: 32, iconSize: 16 },
     sm: { size: 36, iconSize: 18 },
-    md: { size: 44, iconSize: 24 }, // Tamaño por defecto
+    md: { size: 44, iconSize: 24 },
     lg: { size: 52, iconSize: 32 },
     xl: { size: 60, iconSize: 40 },
 };
 
-const IconButton: React.FC<IconButtonProps> = ({
+const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(({
     onClick,
     color = "primary",
     borderRadius = 22,
@@ -76,8 +75,8 @@ const IconButton: React.FC<IconButtonProps> = ({
     iconSize,
     hasShadow = true,
     style,
-    size = "md",
-}) => {
+    size = "md"
+}, ref) => {
     const [isPressed, setIsPressed] = useState(false);
 
     const handlePressStart = () => {
@@ -95,16 +94,13 @@ const IconButton: React.FC<IconButtonProps> = ({
     const buttonSize = sizeStyle[size].size;
     const calculatedIconSize = iconSize ?? sizeStyle[size].iconSize;
 
-    // Resuelve el color de fondo para el botón
     const resolvedColor = color in colors ? colors[color as keyof typeof colors] : color;
-
-    // Determina el color del icono según el fondo
     const iconColor =
         type === "solid"
-            ? isDarkColor(resolvedColor || "") // Si el color es oscuro, el icono será blanco; si no, usa colors.text
+            ? isDarkColor(resolvedColor || "")
                 ? "#fff"
                 : colors.textShade
-            : resolvedColor; // En los demás casos, el icono usará el color del texto
+            : resolvedColor;
 
     const buttonStyle: React.CSSProperties = {
         display: "flex",
@@ -131,6 +127,7 @@ const IconButton: React.FC<IconButtonProps> = ({
     return (
         <Touchable onClick={onClick} style={buttonStyle}>
             <button
+                ref={ref}
                 onClick={(e) => e.preventDefault()}
                 onMouseDown={handlePressStart}
                 onMouseUp={handlePressEnd}
@@ -154,6 +151,8 @@ const IconButton: React.FC<IconButtonProps> = ({
             </button>
         </Touchable>
     );
-};
+});
+
+IconButton.displayName = "IconButton";
 
 export default IconButton;

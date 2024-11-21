@@ -19,7 +19,7 @@
   "homepage": "https://github.com/precookedcode/react-icon-button#readme",
   "license": "ISC",
   "dependencies": {
-    "@precooked/react-icon": "^1.0.11",
+    "@precooked/react-icon": "^1.0.17",
     "@precooked/react-touchable": "^1.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
